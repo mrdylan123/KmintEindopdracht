@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\libkmint",
+    "\\libkmint\\include\\kmint",
+    "\\libkmint\\include\\kmint\\graph",
+    "\\libkmint\\include\\kmint\\graphics",
+    "\\libkmint\\include\\kmint\\map",
+    "\\libkmint\\include\\kmint\\play",
+    "\\libkmint\\include\\kmint\\ui",
+    "\\libkmint\\src\\kmint",
+    "\\pigisland"
+  ],
+  "PreviewInSolutionExplorer": false
+}
