@@ -9,7 +9,7 @@ int distance::shortestDistance() const
     return shortestDistance_;
 }
 
-kmint::graph::basic_node<kmint::map::map_node_info>* distance::fromNode() const
+const kmint::graph::basic_node<kmint::map::map_node_info>* distance::fromNode() const
 {
     return fromNode_;
 }
@@ -19,7 +19,7 @@ void distance::setShortestDistance(int shortestDistance)
     shortestDistance_ = shortestDistance;
 }
 
-void distance::setFromNode(kmint::graph::basic_node<kmint::map::map_node_info>* fromNode)
+void distance::setFromNode(const kmint::graph::basic_node<kmint::map::map_node_info>* fromNode)
 {
     fromNode_ = fromNode;
 }

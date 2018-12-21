@@ -24,22 +24,22 @@ public:
         return distance;
     }
 
-    static std::stack<kmint::graph::basic_node<kmint::map::map_node_info>*> run(
+    static std::stack<const kmint::graph::basic_node<kmint::map::map_node_info>*> run(
         kmint::map::map_graph& graph, kmint::graph::basic_graph<kmint::map::map_node_info>::node_type const& start,
         kmint::graph::basic_graph<kmint::map::map_node_info>::node_type const& end)
     {
-        std::stack<kmint::graph::basic_node<kmint::map::map_node_info>*> shortestPath = std::stack<kmint::graph::basic_node<kmint::map::map_node_info>*>{};
+        std::stack<const kmint::graph::basic_node<kmint::map::map_node_info>*> shortestPath = std::stack<const kmint::graph::basic_node<kmint::map::map_node_info>*>{};
 
-        std::priority_queue<std::pair<int, kmint::graph::basic_node<kmint::map::map_node_info>*>,
-            std::vector<std::pair<int, kmint::graph::basic_node<kmint::map::map_node_info>*>>,
-            std::greater<std::pair<int, kmint::graph::basic_node<kmint::map::map_node_info>*>>> priorityQueue;
+        std::priority_queue<std::pair<int, const kmint::graph::basic_node<kmint::map::map_node_info>*>,
+            std::vector<std::pair<int, const kmint::graph::basic_node<kmint::map::map_node_info>*>>,
+            std::greater<std::pair<int, const kmint::graph::basic_node<kmint::map::map_node_info>*>>> priorityQueue;
 
-        std::vector<kmint::graph::basic_node<kmint::map::map_node_info>*> visitedNodes{};
+        std::vector<const kmint::graph::basic_node<kmint::map::map_node_info>*> visitedNodes{};
 
         kmint::graph::basic_node<kmint::map::map_node_info>* startNode = nullptr;
-        kmint::graph::basic_node<kmint::map::map_node_info>* endNode = nullptr;
+        const kmint::graph::basic_node<kmint::map::map_node_info>* endNode = nullptr;
 
-        std::map<kmint::graph::basic_node<kmint::map::map_node_info>&, distance> distances{};
+        std::map<const kmint::graph::basic_node<kmint::map::map_node_info>*, distance> distances{};
 
         for (std::size_t i = 0; i < graph.num_nodes(); ++i) {
             distance dist;
@@ -50,10 +50,10 @@ public:
                 dist = distance{};
             }
 
-            distances.insert(std::pair<kmint::graph::basic_node<kmint::map::map_node_info>&, distance>(&graph[i], dist));
+            distances.insert(std::pair<kmint::graph::basic_node<kmint::map::map_node_info>*, distance>(&graph[i], dist));
         }
 
-        priorityQueue.push(std::make_pair(distances[*startNode], startNode));
+        priorityQueue.push(std::make_pair(distances.at(startNode).shortestDistance(), startNode));
 
         int checks = 0;
 
@@ -69,7 +69,7 @@ public:
             // has to be done this way to keep the vertices 
             // sorted distance (distance must be first item 
             // in pair) 
-            kmint::graph::basic_node<kmint::map::map_node_info>* node = priorityQueue.top().second;
+            const kmint::graph::basic_node<kmint::map::map_node_info>* node = priorityQueue.top().second;
 
             if (node->node_id() == end.node_id())
             {
@@ -85,7 +85,7 @@ public:
             // 'i' is used to get all adjacent vertices of a vertex 
             for (auto& vertex : *node)
             {
-                kmint::graph::basic_node<kmint::map::map_node_info>* oppositeNode;
+                const kmint::graph::basic_node<kmint::map::map_node_info>* oppositeNode;
 
                 if (node == &vertex.from())
                 {
@@ -99,12 +99,12 @@ public:
                 if (std::find(visitedNodes.begin(), visitedNodes.end(), oppositeNode) == visitedNodes.end())
                 {
                     //  If there is shorted path to v through u. 
-                    if (distances[*oppositeNode] > distances[*node] + vertex.weight() + distanceBetween(oppositeNode->location(), end.location()))
+                    if (distances.at(oppositeNode).shortestDistance() > distances.at(node).shortestDistance() + vertex.weight() + distanceBetween(oppositeNode->location(), end.location()))
                     {
                         // Updating distance of v 
-                        distances[*oppositeNode] = distances[*node] + vertex.weight() + distanceBetween(oppositeNode->location(), end.location());
-                        fromNodes[*oppositeNode] = node;
-                        priorityQueue.push(std::make_pair(distances[*oppositeNode], oppositeNode));
+                        distances.at(oppositeNode).setShortestDistance(distances.at(node).shortestDistance() + vertex.weight() + distanceBetween(oppositeNode->location(), end.location()));
+						distances.at(oppositeNode).setFromNode(node);
+                        priorityQueue.push(std::make_pair(distances.at(oppositeNode).shortestDistance(), oppositeNode));
                     }
                 }
             }
@@ -112,19 +112,20 @@ public:
 
         std::cout << checks << std::endl;
 
-        if (fromNodes[*endNode] != nullptr || endNode->node_id() == start.node_id())
+        if (endNode != nullptr && distances.at(endNode).fromNode() != nullptr || endNode->node_id() == start.node_id())
         {
             while (endNode != nullptr)
             {
                 shortestPath.push(endNode);
-                //endNode->tagged(true);
-                endNode = fromNodes[*endNode];
-            }
-        }
+				for (std::size_t i = 0; i < graph.num_nodes(); ++i) {
 
-        for (auto& node : graph)
-        {
-            node.reset();
+					if (graph[i].node_id() == endNode->node_id())
+					{
+						graph[i].tagged(true);
+					}
+				}
+                endNode = distances.at(endNode).fromNode();
+            }
         }
 
         return shortestPath;
