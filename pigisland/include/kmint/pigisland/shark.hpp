@@ -4,6 +4,8 @@
 #include "kmint/map/map.hpp"
 #include "kmint/play.hpp"
 #include "kmint/primitives.hpp"
+#include <stack>
+
 namespace kmint {
 namespace pigisland {
 class shark : public play::map_bound_actor {
@@ -19,6 +21,7 @@ private:
   map::map_graph *map_;
   map::map_node const *resting_place_;
   delta_time t_since_move_{};
+  std::stack<kmint::graph::basic_node<kmint::map::map_node_info>*> shortest_path_;
 };
 
 } // namespace pigisland

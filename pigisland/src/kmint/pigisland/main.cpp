@@ -3,8 +3,16 @@
 #include "kmint/pigisland/pig.hpp"
 #include "kmint/pigisland/resources.hpp"
 #include "kmint/pigisland/shark.hpp"
-#include "kmint/play.hpp"
-#include "kmint/ui.hpp"
+#include "kmint/ui/app.hpp"
+#include "kmint/ui/window.hpp"
+#include "kmint/play/stage.hpp"
+#include "kmint/play/background.hpp"
+#include "kmint/math/size.hpp"
+#include "kmint/graphics/image.hpp"
+#include "kmint/play/graph_actor.hpp"
+#include "kmint/ui/events/event.hpp"
+#include "kmint/primitives.hpp"
+#include "kmint/math/vector2d.hpp"
 
 using namespace kmint;
 int main() {
@@ -12,7 +20,7 @@ int main() {
   ui::app app{};
 
   //  maak een venster aan
-  ui::window window{app.create_window({1024, 768}, "hello")};
+  ui::window window{app.create_window({1024, 768}, "hello", 0.9)};
 
   // maak een podium aan
   play::stage s{};

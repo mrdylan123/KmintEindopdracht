@@ -2,14 +2,14 @@
   "ExpandedNodes": [
     "",
     "\\libkmint",
-    "\\libkmint\\include\\kmint",
-    "\\libkmint\\include\\kmint\\graph",
-    "\\libkmint\\include\\kmint\\graphics",
-    "\\libkmint\\include\\kmint\\map",
-    "\\libkmint\\include\\kmint\\play",
-    "\\libkmint\\include\\kmint\\ui",
-    "\\libkmint\\src\\kmint",
-    "\\pigisland"
+    "\\pigisland",
+    "\\pigisland\\include",
+    "\\pigisland\\include\\kmint",
+    "\\pigisland\\include\\kmint\\pigisland",
+    "\\pigisland\\src",
+    "\\pigisland\\src\\kmint",
+    "\\pigisland\\src\\kmint\\pigisland"
   ],
+  "SelectedNode": "\\pigisland\\include\\kmint\\pigisland\\aStar.h",
   "PreviewInSolutionExplorer": false
 }
