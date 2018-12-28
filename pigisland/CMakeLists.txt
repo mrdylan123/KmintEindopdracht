@@ -18,7 +18,10 @@ add_executable(pigisland
   src/kmint/pigisland/shark.cpp
   src/kmint/pigisland/boat.cpp
   src/kmint/pigisland/pig.cpp
-  src/kmint/pigisland/distance.cpp)
+  src/kmint/pigisland/distance.cpp
+  src/kmint/pigisland/fsm/state.cpp
+  src/kmint/pigisland/fsm/sharkState.cpp
+  src/kmint/pigisland/fsm/sharkWanderState.cpp)
 
 target_compile_features(pigisland PUBLIC cxx_std_17)
 target_link_libraries(pigisland PRIVATE kmint)

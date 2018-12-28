@@ -1,8 +1,6 @@
 {
   "ExpandedNodes": [
     "",
-    "\\libkmint",
-    "\\libkmint\\include",
     "\\libkmint\\include\\kmint",
     "\\libkmint\\include\\kmint\\play",
     "\\libkmint\\src",
@@ -13,6 +11,6 @@
     "\\pigisland\\include\\kmint",
     "\\pigisland\\include\\kmint\\pigisland"
   ],
-  "SelectedNode": "\\pigisland\\include\\kmint\\pigisland\\pig.hpp",
+  "SelectedNode": "\\pigisland\\include\\kmint\\pigisland\\fsm\\sharkWanderState.h",
   "PreviewInSolutionExplorer": false
 }
