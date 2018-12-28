@@ -15,9 +15,9 @@ class aStar
 public:
     static int distanceBetween(kmint::math::vector2d vector1, kmint::math::vector2d vector2)
     {
-        kmint::math::vector2d resultVector = vector2 - vector1;
+        kmint::math::vector2d distanceVector = vector1 - vector2;
 
-        int distance = abs(resultVector.x()) + abs(resultVector.y()) / 32;
+        int distance = (abs(distanceVector.x()) + abs(distanceVector.y())) / 32;
 
         std::cout << distance << std::endl;
 
@@ -42,12 +42,12 @@ public:
         std::map<const kmint::graph::basic_node<kmint::map::map_node_info>*, distance> distances{};
 
         for (std::size_t i = 0; i < graph.num_nodes(); ++i) {
-            distance dist;
+            distance dist{};
 
             if (graph[i].node_id() == start.node_id())
             {
                 startNode = &graph[i];
-                dist = distance{};
+                dist.setShortestDistance(0);
             }
 
             distances.insert(std::pair<kmint::graph::basic_node<kmint::map::map_node_info>*, distance>(&graph[i], dist));
@@ -79,7 +79,6 @@ public:
 
             priorityQueue.pop();
 
-            //node->tagged(true);
             visitedNodes.emplace_back(node);
 
             // 'i' is used to get all adjacent vertices of a vertex 
@@ -112,7 +111,7 @@ public:
 
         std::cout << checks << std::endl;
 
-        if (endNode != nullptr && distances.at(endNode).fromNode() != nullptr || endNode->node_id() == start.node_id())
+        if (distances.at(endNode).fromNode() != nullptr || endNode->node_id() == start.node_id())
         {
             while (endNode != nullptr)
             {
