@@ -1,4 +1,6 @@
 #include "kmint/play/stage.hpp"
+#include "../../../../pigisland/include/kmint/pigisland/pig.hpp"
+#include "../../../../pigisland/include/kmint/pigisland/resources.hpp"
 #include "kmint/play/actor.hpp"
 #include <algorithm>
 
@@ -47,6 +49,9 @@ void stage::remove_actor(actor const &a) {
                      [&a](auto const &ptr) { return &a == ptr.get(); }),
       actors_.end());
 }
+
+void stage::clear() { actors_.clear(); }
+
 stage::iterator stage::begin() {
   return {actors_.begin(), util::deref_unique_ptr<actor>};
 }

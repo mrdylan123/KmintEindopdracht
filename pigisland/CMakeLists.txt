@@ -14,6 +14,7 @@ endif()
 add_executable(pigisland
   src/kmint/pigisland/main.cpp
   src/kmint/pigisland/node_algorithm.cpp
+  src/kmint/pigisland/rectangle.cpp
   src/kmint/pigisland/resources.cpp
   src/kmint/pigisland/shark.cpp
   src/kmint/pigisland/boat.cpp
@@ -21,7 +22,15 @@ add_executable(pigisland
   src/kmint/pigisland/distance.cpp
   src/kmint/pigisland/fsm/state.cpp
   src/kmint/pigisland/fsm/sharkState.cpp
-  src/kmint/pigisland/fsm/sharkWanderState.cpp)
+  src/kmint/pigisland/fsm/sharkWanderState.cpp
+  src/kmint/pigisland/fsm/sharkRestState.cpp
+  src/kmint/pigisland/fsm/sharkPursuitState.cpp
+  src/kmint/pigisland/fsm/sharkScaredState.cpp
+  src/kmint/pigisland/fsm/boatState.cpp
+  src/kmint/pigisland/fsm/boatWanderState.cpp
+  src/kmint/pigisland/fsm/boatRepairState.cpp
+  src/kmint/pigisland/genetics.cpp
+  src/kmint/pigisland/geneticAlgorithm.cpp)
 
 target_compile_features(pigisland PUBLIC cxx_std_17)
 target_link_libraries(pigisland PRIVATE kmint)

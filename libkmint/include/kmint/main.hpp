@@ -68,7 +68,7 @@ void main_loop(play::stage &s, ui::window &w, MainFun f) {
   loop_controls ctl{};
   while (true) {
     time t_current = now();
-    delta_time dt = t_current - t_prev;
+    delta_time dt = (t_current - t_prev) * 8;
     t_prev = t_current;
     f(dt, ctl);
     if (ctl.quit)

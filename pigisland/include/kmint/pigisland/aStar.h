@@ -19,8 +19,6 @@ public:
 
         int distance = (abs(distanceVector.x()) + abs(distanceVector.y())) / 32;
 
-        std::cout << distance << std::endl;
-
         return distance;
     }
 
@@ -28,6 +26,7 @@ public:
         kmint::map::map_graph& graph, kmint::graph::basic_graph<kmint::map::map_node_info>::node_type const& start,
         kmint::graph::basic_graph<kmint::map::map_node_info>::node_type const& end)
     {
+	graph.untag_all();
         std::stack<const kmint::graph::basic_node<kmint::map::map_node_info>*> shortestPath = std::stack<const kmint::graph::basic_node<kmint::map::map_node_info>*>{};
 
         std::priority_queue<std::pair<int, const kmint::graph::basic_node<kmint::map::map_node_info>*>,
@@ -108,8 +107,6 @@ public:
                 }
             }
         }
-
-        std::cout << checks << std::endl;
 
         if (distances.at(endNode).fromNode() != nullptr || endNode->node_id() == start.node_id())
         {

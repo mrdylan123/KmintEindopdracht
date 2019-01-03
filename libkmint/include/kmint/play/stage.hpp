@@ -67,6 +67,8 @@ public:
    */
   void remove_actor(actor const &a);
 
+  void clear();
+
   iterator begin();
   iterator end();
   const_iterator cbegin() const;
