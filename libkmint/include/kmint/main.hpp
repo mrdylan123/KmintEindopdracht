@@ -34,6 +34,8 @@ struct loop_controls {
   /*! \brief If false, the stage will not be rendered
    */
   bool render{true};
+
+  int gamespeed{8};
 };
 
 /*! \brief The mainloop of a kmint application
@@ -68,7 +70,7 @@ void main_loop(play::stage &s, ui::window &w, MainFun f) {
   loop_controls ctl{};
   while (true) {
     time t_current = now();
-    delta_time dt = (t_current - t_prev) * 8;
+    delta_time dt = (t_current - t_prev) * ctl.gamespeed;
     t_prev = t_current;
     f(dt, ctl);
     if (ctl.quit)

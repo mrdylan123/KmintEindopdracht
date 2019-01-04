@@ -1,6 +1,15 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\pigisland",
+    "\\pigisland\\include",
+    "\\pigisland\\include\\kmint",
+    "\\pigisland\\include\\kmint\\pigisland",
+    "\\pigisland\\include\\kmint\\pigisland\\fsm",
+    "\\pigisland\\src",
+    "\\pigisland\\src\\kmint",
+    "\\pigisland\\src\\kmint\\pigisland"
   ],
+  "SelectedNode": "\\pigisland\\src\\kmint\\pigisland\\geneticAlgorithm.cpp",
   "PreviewInSolutionExplorer": false
 }

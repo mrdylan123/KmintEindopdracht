@@ -1,10 +1,14 @@
 #include "kmint/pigisland/resources.hpp"
 #include "kmint/pigisland/rectangle.h"
 
-namespace kmint {
-namespace pigisland {
-namespace {
-constexpr const char *graph_description = R"graph(32 24 32
+namespace kmint
+{
+	namespace pigisland
+	{
+		namespace
+		{
+			constexpr const char* graph_description =
+				R"graph(32 24 32
 resources/pigisland.png
 W 1 1
 1 1 1
@@ -40,30 +44,26 @@ SSLLLLWWWWWWWRRRRWWWWWWWWLLLLLLL
 SSWWWWWWWWWWWWWWWWWWWWWWWLLLLLLL
 KWWWWWWWWWWWWWWWWWWWWWWWWLLLLLLL
 )graph";
-}
+		}
 
 
-std::vector<rectangle> grassIslands()
-{
-    return std::vector<rectangle>{
-    	{
-	    rectangle{ 0, 0, 320, 96 },
-	    rectangle{ 896, 0, 128, 128 },
-	    rectangle{ 0, 512, 192, 192 },
-	    rectangle{ 768, 480, 192, 224 }
-	}
-    };
-}
+		std::vector<rectangle> grassIslands()
+		{
+			return std::vector<rectangle>{
+				{
+					rectangle{0, 0, 320, 256},
+					rectangle{896, 0, 128, 128},
+					rectangle{0, 512, 192, 192},
+					rectangle{736, 480, 288, 288}
+				}
+			};
+		}
 
-map::map map() { return map::read_map(graph_description); }
+		map::map map() { return map::read_map(graph_description); }
 
-graphics::image shark_image() { return graphics::image{"resources/shark.png"}; }
-graphics::image pig_image() { return graphics::image{"resources/pig.png"}; }
+		graphics::image shark_image() { return graphics::image{"resources/shark.png"}; }
+		graphics::image pig_image() { return graphics::image{"resources/pig.png"}; }
 
-graphics::image boat_image() { return graphics::image{"resources/boat.png"}; }
-
-
-
-} // namespace pigisland
-
+		graphics::image boat_image() { return graphics::image{"resources/boat.png"}; }
+	} // namespace pigisland
 } // namespace kmint

@@ -1,10 +1,11 @@
 #include "kmint/pigisland/fsm/state.h"
 
 
-namespace kmint {
-	namespace pigisland {
-
-		state::state() : elapsedTime_{ 0 }
+namespace kmint
+{
+	namespace pigisland
+	{
+		state::state() : elapsedTime_{0}
 		{
 		}
 

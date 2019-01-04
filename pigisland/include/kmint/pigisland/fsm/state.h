@@ -3,9 +3,12 @@
 
 #include "kmint/primitives.hpp"
 
-namespace kmint {
-	namespace pigisland {
-		class state {
+namespace kmint
+{
+	namespace pigisland
+	{
+		class state
+		{
 		public:
 			state();
 			virtual ~state() = default;
